@@ -1,3 +1,5 @@
+This application was created to research how Node-TypeScript lambdas interacting with a DynamoDB could be written and tested locally.
+
 **Requirements:**
 - node v12.18.3
 - serverless (`npm install -g serverless`)
