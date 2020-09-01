@@ -1,0 +1,10 @@
+{    
+    "eslint.enable": true,
+    "eslint.options": { "configFile": ".eslintrc.json" },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": false,
+        "source.fixAll.eslint": true
+    }
+}

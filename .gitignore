@@ -1,0 +1,9 @@
+# package directories
+node_modules
+
+# Build directories
+.build
+.serverless
+.dynamodb
+.webpack
+offline/data/*
