@@ -1,4 +1,4 @@
-import path from 'path';
+import path = require('path');
 import type { Serverless } from 'serverless/aws';
 
 const serverlessConfiguration: Serverless = {
