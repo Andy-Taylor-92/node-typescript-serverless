@@ -5,7 +5,7 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import createEvent from '@serverless/event-mocks';
 
 describe('Test GetUser', () => {
-  test('should  200 with user details', async () => {
+  test('should 200 with user details', async () => {
     const user: any = await dynamoDB.write(
       {
         id: v4(),
@@ -21,7 +21,9 @@ describe('Test GetUser', () => {
     const event: APIGatewayProxyEvent = createEvent('aws:apiGateway', params);
 
     const res: any = await handler(event, null, null);
+    const resUser: any = JSON.parse(res.body);
 
     expect(res.statusCode).toBe(200);
+    expect(resUser).toStrictEqual(user);
   });
 });
