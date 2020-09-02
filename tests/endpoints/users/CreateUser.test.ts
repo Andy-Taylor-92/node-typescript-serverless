@@ -1,18 +1,21 @@
 import { handler } from '../../../src/endpoints/users/CreateUser';
-import createEvent from '@serverless/event-mocks';
-import { APIGatewayProxyEvent } from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 describe('Test CreateUser', () => {
-  test('should return 201 with the user details', async () => {
-    const params: any = {
+  test('should return 201 with the users details', async () => {
+    const params: Partial<APIGatewayProxyEvent> = {
       body: JSON.stringify({
         name: 'Anna',
       }),
     };
-    const event: APIGatewayProxyEvent = createEvent('aws:apiGateway', params);
+    const event: APIGatewayProxyEvent = <APIGatewayProxyEvent>params;
 
-    const res: any = await handler(event, null, null);
+    const res: void | APIGatewayProxyResult = await handler(event, null, null);
 
-    expect(res.statusCode).toBe(201);
+    if (res) {
+      expect(res.statusCode).toBe(201);
+    } else {
+      throw new Error('CreateUser failed to return with a response');
+    }
   });
 });

@@ -36,7 +36,7 @@ const serverlessConfiguration: Serverless = {
     },
   },
   functions: {
-    createUser: {
+    GreateUser: {
       handler: 'src/endpoints/users/CreateUser.handler',
       events: [
         {
@@ -47,13 +47,24 @@ const serverlessConfiguration: Serverless = {
         },
       ],
     },
-    getUser: {
+    GetUser: {
       handler: 'src/endpoints/users/GetUser.handler',
       events: [
         {
           http: {
             method: 'GET',
             path: 'users/{id}',
+          },
+        },
+      ],
+    },
+    GetUsers: {
+      handler: 'src/endpoints/users/GetUsers.handler',
+      events: [
+        {
+          http: {
+            method: 'GET',
+            path: 'users',
           },
         },
       ],

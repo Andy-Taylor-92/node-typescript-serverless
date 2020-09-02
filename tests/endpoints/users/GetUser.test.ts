@@ -1,27 +1,32 @@
 import { handler } from '../../../src/endpoints/users/GetUser';
 import { dynamoDB } from '../../../src/client/DynamoDB';
 import { v4 } from 'uuid';
-import { APIGatewayProxyEvent } from 'aws-lambda';
-import createEvent from '@serverless/event-mocks';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+
+const tableName = 'users-table';
 
 describe('Test GetUser', () => {
-  test('should  200 with user details', async () => {
-    const user: any = await dynamoDB.write(
+  test('should  200 with the users details', async () => {
+    const user: Record<string, unknown> = await dynamoDB.write(
       {
         id: v4(),
         name: 'Anna',
       },
-      'users-table'
+      tableName
     );
-    const params: any = {
+    const params: Partial<APIGatewayProxyEvent> = {
       pathParameters: {
-        id: user.id,
+        id: <string>user.id,
       },
     };
-    const event: APIGatewayProxyEvent = createEvent('aws:apiGateway', params);
+    const event: APIGatewayProxyEvent = <APIGatewayProxyEvent>params;
 
-    const res: any = await handler(event, null, null);
+    const res: void | APIGatewayProxyResult = await handler(event, null, null);
 
-    expect(res.statusCode).toBe(200);
+    if (res) {
+      expect(res.statusCode).toBe(200);
+    } else {
+      throw new Error('GetUser failed to return with a response');
+    }
   });
 });
