@@ -6,17 +6,16 @@ const tableName = 'users-table';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent) => {
   const id = event.pathParameters.id;
-
-  const user = await dynamoDB.get(id, tableName).catch((err: any) => {
-    console.log('error in Dynamo get', err);
+  try {
+    const user = await dynamoDB.get(id, tableName);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(user),
+    };
+  } catch (error) {
     return {
       statusCode: 400,
-      body: { message: 'Unable to process request' },
+      body: JSON.stringify({ message: 'Unable to process request' }),
     };
-  });
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify(user),
-  };
+  }
 };
