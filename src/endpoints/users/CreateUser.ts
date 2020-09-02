@@ -10,16 +10,16 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   const user = JSON.parse(event.body);
   user.id = id;
 
-  const newUser = await dynamoDB.write(user, tableName).catch((err: any) => {
-    console.log('error in dynamo write', err);
+  try {
+    const newUser = await dynamoDB.write(user, tableName);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(newUser),
+    };
+  } catch (error) {
     return {
       statusCode: 400,
-      body: { message: 'Unable to process request' },
+      body: JSON.stringify({ message: 'Unable to process request' }),
     };
-  });
-
-  return {
-    statusCode: 201,
-    body: JSON.stringify(newUser),
-  };
+  }
 };
