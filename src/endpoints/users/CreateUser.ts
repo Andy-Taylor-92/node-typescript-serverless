@@ -13,7 +13,7 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
   try {
     const newUser = await dynamoDB.write(user, tableName);
     return {
-      statusCode: 200,
+      statusCode: 201,
       body: JSON.stringify(newUser),
     };
   } catch (error) {

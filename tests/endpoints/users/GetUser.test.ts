@@ -14,7 +14,7 @@ describe('Test GetUser', () => {
       'users-table'
     );
     const params: any = {
-      pathParametersObject: {
+      pathParameters: {
         id: user.id,
       },
     };
