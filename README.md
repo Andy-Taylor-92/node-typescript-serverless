@@ -3,7 +3,7 @@ This application was created to research how Node-TypeScript lambdas interacting
 **Requirements:**
 - node v12.18.3
 
-**Install & build:**
+**Install & Build:**
 - `npm i`
 - `npm run build`
 
@@ -16,16 +16,14 @@ This application was created to research how Node-TypeScript lambdas interacting
   http://localhost:3000/dev/users
   ```
 - `curl --request GET http://localhost:3000/dev/users/<ID-FROM-POST-RESPONSE>`
+- a runtime debugger in VS code can be attached using the config in `.vscode/launch.json` (the application must first be running for this to work)
+
+**Test:**
+- `npm run test -- --coverage`
+- a testing debugger can also be found in `.vscode/launch.json` (the application does not have to be running to debug tests)
 
 **IDE (VSCode):**
 - install `ESLint` and `Prettier - Code formatter` plugins in VSCode (an "allow Eslint to run" prompt will appear - click yes)
-- a runtime debugger in VS code can be attached using the config in `.vscode/launch.json` (the application must first be running for this to work)
-- a testing debugger can also be found in `.vscode/launch.json` (the application does not have to be running to debug tests)
-
-
-**Testing:**
-- `npm run test`
-
 
 **Issues**
 - To run and test locally, a schema must be defined in several places (this should be consolidated into one importable file for re-use [DRY]):

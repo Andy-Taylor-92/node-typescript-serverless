@@ -16,6 +16,7 @@
 		".serverless/**/*",
 		".webpack/**/*",
 		".build/**/*",
+		".coverage/**/*",
 		"_warmup/**/*",
 		".vscode/**/*",
 		"*.config.js",

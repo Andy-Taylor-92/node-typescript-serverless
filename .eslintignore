@@ -1,9 +1,10 @@
 node_modules
 offline
+_warmup
 .serverless
 .build
 .webpack
-_warmup
+.coverage
 .vscode
 *.config.js
 **/*.js
