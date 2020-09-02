@@ -13,7 +13,7 @@ if (process.env.IS_OFFLINE) {
 
 const documentClient = new AWS.DynamoDB.DocumentClient(options);
 
-export const DynamoDB = {
+export const dynamoDB = {
   async get(id: string, TableName: string): Promise<any> {
     const params = {
       TableName,

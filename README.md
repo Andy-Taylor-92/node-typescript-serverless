@@ -2,14 +2,13 @@ This application was created to research how Node-TypeScript lambdas interacting
 
 **Requirements:**
 - node v12.18.3
-- serverless (`npm install -g serverless`)
 
-**Install:**
+**Install & build:**
 - `npm i`
-- `sls dynamodb install`
+- `npm run build`
 
 **Run:**
-- `sls offline start --location .`
+- `npm start`
 - ```
   curl --header "Content-Type: application/json" \
   --request POST \
@@ -18,6 +17,18 @@ This application was created to research how Node-TypeScript lambdas interacting
   ```
 - `curl --request GET http://localhost:3000/dev/users/<ID-FROM-POST-RESPONSE>`
 
-**Development:**
+**IDE (VSCode):**
 - install `ESLint` and `Prettier - Code formatter` plugins in VSCode (an "allow Eslint to run" prompt will appear - click yes)
-- a debugger in VS code can be attached using the config in `.vscode/launch.json` (the application must first be running for this to work)
+- a runtime debugger in VS code can be attached using the config in `.vscode/launch.json` (the application must first be running for this to work)
+- a testing debugger can also be found in `.vscode/launch.json` (the application does not have to be running to debug tests)
+
+
+**Testing:**
+- `npm run test`
+
+
+**Issues**
+- To run and test locally, a schema must be defined in several places (this should be consolidated into one importable file for re-use [DRY]):
+  - `serverless.ts` (for production)
+  - `offline/migrations/*.json` (for local development)
+  - `jest-dynamodb-config.js` (for local testing)
